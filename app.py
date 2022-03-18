@@ -6,7 +6,7 @@ from security import authenticate, identity
 from resources.user import UserRegister
 from resources.item import Item, ItemList
 from resources.store import Store, StoreList
-from db import db
+
 
 
 app = Flask(__name__)
@@ -16,9 +16,6 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False #This turn off the flask_sq
 app.secret_key = 'miki'
 api = Api(app)
 
-@app.before_first_request
-def create_tables():
-    db.create_all()
 
 jwt = JWT(app, authenticate, identity) #JWT creates a new end point /auth
 
